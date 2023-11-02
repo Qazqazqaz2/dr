@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf=8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="178100631317-7kk5edr08pptqi100dp344ug1mhc3thi.apps.googleusercontent.com"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <title>Login</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+      var userClickedSignIn = false;
+
+      let signInClicked = function () { 
+        console.log("userClickedSignIn")
+        userClickedSignIn = true;
+      }
+
+      function onSignIn(googleUser) {
+        console.log(userClickedSignIn);
+        if (!userClickedSignIn) {
+          return;
+        }
+        console.log("Sign in called...");
+        // var profile = googleUser.getBasicProfile();
+        // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+        // Get user's id token
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:5000/googlesignin");
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.onload = function () {
+          console.log("Signed in as: " + xhr.responseText);
+          window.location.replace("http://localhost:5000/tasks")
+        };
+        xhr.send("idtoken=" + id_token);
+      }
+      window.onload = function() {
+        document.getElementById("google-signin").addEventListener("click", signInClicked, false);
+      };
+    </script>
+  </head>
+
+  <body>
+    <nav class="top-navbar">
+      <div class="brand-title">DAY PLANNER</div>
+      <div class="top-navbar-links">
+        <ul>
+          <li><a href="/register">Register</a></li>
+          <li><a href="/login">Sign In</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-section">
+      <h1 class="main-page-title">Login</h1>
+
+      <form class="login-form" action="/login" method="post">
+        <!-- username -->
+        <div class="form-input">
+          <input
+            autocomplete="off"
+            name="username"
+            placeholder="Username"
+            type="text"
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+        <!-- password -->
+        <div class="form-input">
+          <input
+            name="password"
+            placeholder="Password"
+            type="password"
+            autofocus
+          />
+        </div>
+
+        <!-- button -->
+        <div class="submit-button">
+          <button id="submit" type="submit">Login</button>
+        </div>
+      </form>
+      <div id="google-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+    </main>
+  </body>
+</html>

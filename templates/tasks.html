@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf=8" />
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>Tasks</title>
+    <!-- Required to import fontawesome icons -->
+    <script
+      src="https://kit.fontawesome.com/c20afc23a5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://apis.google.com/js/platform.js" async defer>
+      let signOut =  function () {
+        console.log(gapi);
+        console.log(gapi.auth2);
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {   
+          console.log('User signed out.');   
+          auth2.disconnect();  
+        });
+        auth2.disconnect();
+      }
+      (function() {
+        document.getElementById ("google-signout").addEventListener ("click", signOut, false);
+      })();
+    </script>
+  </head>
+
+  <body>
+    
+    {% include 'navbar.html' %}
+
+    <main class="main-section">
+        <div class="wrapper">
+            <h1>Tasks</h1>
+            <form action="/add-task" method="post">
+                <div class="input-field">
+                    <input type="text" name="title" placeholder="Add your task"></input>
+                    <button type="submit">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </form>
+
+            {% for todo in todo_list %}
+                <ul class="list-items">
+                    <li>{{ todo.title }}<span><a href="/delete-task/{{ todo.id }}"><i class="fas fa-trash"></i></a></span></li>
+                </ul>
+            {% endfor %}
+        </div>
+
+        <script src="{{ url_for('static', filename='js/tasks.js') }}"></script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,643 @@
+@import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', sans-serif;
+  background-color: #1b141d;
+  margin: 0;
+  padding: 0;
+}
+ /* top navbar */
+
+.top-navbar {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#33333d;
+  color: #ffffff;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  margin: .5rem;
+}
+
+.top-navbar-links {
+  height: 100%;
+}
+
+.top-navbar-links ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.top-navbar-links li {
+  list-style: none;
+  transition: 0.3s;
+}
+
+.top-navbar-links li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+}
+
+.top-navbar-links li:hover {
+  background-color: #555;
+}
+
+.toggle-button {
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .top-navbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .toggle-button {
+      display: flex;
+  }
+
+  .top-navbar-links {
+      display: none;
+      width: 100%;
+  }
+
+  .top-navbar-links ul {
+      width: 100%;
+      flex-direction: column;
+  }
+
+  .top-navbar-links ul li {
+      text-align: center;
+  }
+
+  .top-navbar-links ul li a {
+      padding: .5rem 1rem;
+  }
+
+  .top-navbar-links.active {
+      display: flex;
+  }
+}
+
+/* sidebar */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 60px;
+  height: 100vh;
+  background: #33333d;
+  transition: 0.4s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sidebar:hover {
+  width: 250px;
+}
+
+.sidebar-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-item {
+  position: relative;
+  width: 100%;
+  list-style: none;
+}
+
+.sidebar-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #f5f5f5;
+}
+
+.sidebar-link:hover {
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+}
+
+.icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.icon .fas {
+  font-size: 24px;
+}
+
+.title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* main section of all pages except tasks */
+.main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  position: static;
+}
+
+.main-page-title {
+  color: #ffffff;
+  text-align: center;
+}
+
+.form-input {
+  padding: 7px;
+}
+
+.form-input input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  padding-left: 15px;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:10px;
+}
+
+.submit-button button {
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+.submit-button button:hover {
+  background-color: #c291ff;
+}
+
+/* Tasks page */
+
+.wrapper {
+  max-width: 400px;
+  width: 100%;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #27242c;
+}
+
+.wrapper .input-field {
+    margin: 2px 0;
+    width: 100%;
+    display: flex;
+    height: 45px;
+}
+
+.input-field input {
+  width: 85%;
+  height: 100%;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  padding-left: 15px;
+}
+
+.input-field button {
+  width: 50px;
+  height: 100%;
+  border: none;
+  color: #ffffff;
+  margin-left: 5px;
+  font-size: 20px;
+  outline: none;
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 3px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-field button:hover {
+  background-color: #c291ff;
+}
+
+.input-field button.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.list-items {
+  padding-inline-start: 0px;
+}
+
+.list-items li {
+  list-style: none;
+  height: 45px;
+  line-height: 45px;
+  position: relative;
+  background: #555;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  padding: 0 15px;
+  overflow: absolute;
+}
+
+.list-items li span {
+  position: absolute;
+  right: 0px;
+  background-color: #e74c3c;
+  width: 45px;
+  text-align: center;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.fa-trash {
+  color: white;
+}
+
+/* Calendar page */
+.calendar-container {
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 91.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  color: #ffffff;
+  width: 45rem;
+  height: 50rem;
+  background-color: #27242c;
+}
+
+.month {
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  color: #27242c;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.month i {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.month h1 {
+  font-size: 30px;
+}
+
+.date {
+  line-height: 100%;
+}
+
+.weekdays {
+  width: 100%;
+  display: flex;
+  padding: 0 0.5rem;
+  height: 5rem;
+  align-items: center;
+  background-color: #27242c;
+}
+
+.weekdays div {
+  width: calc(45rem / 7);
+  display: flex;
+  letter-spacing: 0.1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.days {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+}
+
+.days div {
+  margin: 0.3rem;
+  width: calc(46rem / 8);
+  height: 5.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.days div:hover:not(.today) {
+  border: 0.2rem solid #555;
+}
+
+.prev-date,
+.next-date {
+  opacity: 0.5;
+}
+
+.today {
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+}
+
+/* Notes page */
+.notes-popup .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: #27242c;
+  z-index: 1;
+  display: none;
+}
+
+.notes-title {
+  color: #ffffff;
+}
+ 
+.notes-popup .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  background: #27242c;
+  width: 95%;
+  max-width: 700px;
+  height: 95%;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+ 
+.notes-popup .close-button {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  color: #27242c;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 2px;
+}
+ 
+.notes-popup.active .overlay {
+  display: block;
+}
+ 
+.notes-popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%,-50%) scale(1);
+}
+ 
+.add-note-button {
+  padding: 15px;
+  font-size: 18px;
+  color: #ffffff;
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+.add-note-button:hover {
+  background-color: #c291ff;
+}
+
+.notes-title-field {
+ padding: 15px 30px 15px 30px;
+}
+
+.notes-title-field input {
+  width: 90%;
+  height: 50px;
+  padding: 5px;
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 24px;
+}
+
+.notes-body-field {
+  padding: 15px 30px 15px 30px;
+}
+
+.notes-body-field textarea {
+  width: 90%;
+  height: 200px;
+  padding: 0px;
+  font-family: 'JetBrains Mono', sans-serif;
+}
+
+.all-notes {
+  padding: 10px;
+}
+
+.all-notes li {
+  list-style: none;
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 18px;
+}
+
+.save {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:10px;
+}
+
+.save button {
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.save button.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.list-items a {
+  list-style: none;
+  padding: 5px 10px;
+}
+
+.list-items .delete-note {
+  position: absolute;
+  font-size: 10px;
+  background-color: #e74c3c;
+  width: 30px;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.each-note-title {
+  color: #ffffff;
+}
+
+.each-note-body {
+  color: #ffffff;
+}
+
+.fa-trash {
+  color: white;
+}
+
+/* Profile page */
+.profile-container{
+  align-content: center;
+}
+
+.profile-container h1{
+  text-align: center;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  padding: 25px;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #27242c;
+}
+
+.profile-wrapper{
+  position: relative;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-wrapper .image{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-wrapper img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.profile-update-container {
+  padding: 25px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container #custom-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  color: #ffff;
+  font-size: 18px;
+  cursor: pointer;
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  transition: 0.3s;
+}
+
+.container #custom-btn:hover {
+  background-color: #c291ff;
+}
+
+.profile-save-button {
+  background: linear-gradient(to right, #AD62AA, #BC6FF1);
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 90px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-save-button:hover {
+  background-color: #c291ff;
+}

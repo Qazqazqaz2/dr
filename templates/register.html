@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf=8" />
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>Register</title>
+  </head>
+
+  <body>
+    <nav class="top-navbar">
+      <div class="brand-title">DAY PLANNER</div>
+      <div class="top-navbar-links">
+        <ul>
+          <li><a href="/register">Register</a></li>
+          <li><a href="/login">Sign In</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-section">
+      <h1 class="main-page-title">Register</h1>
+
+      <form class="register-form" action="/register" method="post">
+        <!-- first name -->
+        <div class="form-input">
+          <input
+            type="text"
+            id="name"
+            name="first_name"
+            placeholder="First Name"
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+        <!-- last name -->
+        <div class="form-input">
+          <input
+            type="text"
+            id="name"
+            name="last_name"
+            placeholder="Last Name"
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+        <!-- username -->
+        <div class="form-input">
+          <input
+            type="text"
+            id="name"
+            name="username"
+            placeholder="Username"
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+        <!-- password -->
+        <div class="form-input">
+          <input
+            type="password"
+            id="pass"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <!-- confirmation -->
+        <div class="form-input">
+          <input
+            type="password"
+            id="pass1"
+            name="confirmation"
+            placeholder="Confirm Password"
+          />
+        </div>
+        <!-- submit button -->
+        <div class="submit-button">
+          <button id="submit" type="submit">Register</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
