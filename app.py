@@ -355,7 +355,6 @@ def logout():
     # Redirect user to login form
     return redirect(url_for("login"))
 
-if __name__ == "__main__":
-    app.app_context().push()
-    db.create_all()
-    app.run()
+app.app_context().push()
+db.create_all()
+app.run()
