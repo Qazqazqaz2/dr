@@ -358,6 +358,3 @@ def logout():
 
     # Redirect user to login form
     return redirect(url_for("login"))
-
-app.app_context().push()
-db.create_all()
