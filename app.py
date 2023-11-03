@@ -358,4 +358,4 @@ def logout():
 if __name__ == "__main__":
     app.app_context().push()
     db.create_all()
-    app.run(debug=True, host="localhost", port=5000)
+    app.run()
