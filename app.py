@@ -361,4 +361,3 @@ def logout():
 
 app.app_context().push()
 db.create_all()
-app.run()
