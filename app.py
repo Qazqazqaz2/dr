@@ -10,8 +10,12 @@ from google.auth.transport import requests
 from flask_uploads import UploadSet, IMAGES
 from flask_migrate import Migrate
 import base64
+from flask_flatpages import FlatPages
+from flask_frozen import Freezer
 
 app = Flask(__name__)
+pages = FlatPages(app)
+freezer = Freezer(app)
 
 # configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
